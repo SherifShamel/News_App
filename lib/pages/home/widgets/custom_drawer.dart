@@ -23,7 +23,7 @@ class CustomDrawer extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               // Navigator.pushReplacementNamed(context, PagesRouteName.homeView);
             },
             child: Padding(
@@ -39,17 +39,15 @@ class CustomDrawer extends StatelessWidget {
                   const SizedBox(width: 8.0),
                   Text(
                     "Categories",
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.black
-                    ),
+                    style: theme.textTheme.titleLarge
+                        ?.copyWith(color: Colors.black),
                   ),
                 ],
               ),
-
             ),
           ),
           InkWell(
-            onTap: (){
+            onTap: () {
               // Navigator.pushReplacementNamed(context, PagesRouteName.initial);
             },
             child: Padding(
@@ -65,16 +63,13 @@ class CustomDrawer extends StatelessWidget {
                   const SizedBox(width: 8.0),
                   Text(
                     "Settings",
-                    style: theme.textTheme.titleLarge?.copyWith(
-                      color: Colors.black
-                    ),
+                    style: theme.textTheme.titleLarge
+                        ?.copyWith(color: Colors.black),
                   ),
                 ],
               ),
-
             ),
           ),
-
         ],
       ),
     );
