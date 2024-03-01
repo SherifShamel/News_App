@@ -74,7 +74,6 @@ class CustomDrawer extends StatelessWidget {
 
             ),
           ),
-
         ],
       ),
     );
