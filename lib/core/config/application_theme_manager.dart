@@ -13,6 +13,36 @@ class ApplicationThemeManager {
         ),
       ),
       centerTitle: true,
+      iconTheme: IconThemeData(
+        color: Colors.white,
+        size: 30
+      )
+    ),
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(
+        fontFamily: "Exo",
+        fontWeight: FontWeight.bold,
+        fontSize: 24,
+        color: Colors.white,
+      ),
+      bodyLarge: TextStyle(
+        fontFamily: "Exo",
+        fontWeight: FontWeight.bold,
+        fontSize: 22,
+        color: Colors.white,
+      ),
+      bodyMedium: TextStyle(
+        fontFamily: "Exo",
+        fontWeight: FontWeight.w500,
+        fontSize: 22,
+        color: Colors.white,
+      ),
+      bodySmall: TextStyle(
+        fontFamily: "Exo",
+        fontWeight: FontWeight.w400,
+        fontSize: 14,
+        color: Colors.white,
+      ),
     ),
   );
 }
