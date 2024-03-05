@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/core/config/pages_route_name.dart';
+import 'package:news_app/pages/home/pages/home_view.dart';
 
 class CustomDrawer extends StatelessWidget {
-  const CustomDrawer({super.key});
+  final Function onCategoryDrawerTap;
+  const CustomDrawer({super.key,required this.onCategoryDrawerTap});
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +27,8 @@ class CustomDrawer extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
+              onCategoryDrawerTap();
+              Navigator.pop(context);
               // Navigator.pushReplacementNamed(context, PagesRouteName.homeView);
             },
             child: Padding(

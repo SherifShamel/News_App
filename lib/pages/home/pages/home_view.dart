@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/core/widgets/custom_background_widget.dart';
 import 'package:news_app/generated/assets.dart';
+import 'package:news_app/main.dart';
+import 'package:news_app/models/category_model.dart';
+import 'package:news_app/pages/home/pages/category_view.dart';
 import 'package:news_app/pages/home/widgets/custom_drawer.dart';
 import 'package:news_app/pages/home/widgets/custom_item_widget.dart';
-
-import '../../../models/category_model.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -60,43 +61,64 @@ class _HomeViewState extends State<HomeView> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            "News App",
+            selectedCategory == null ? "News App" : selectedCategory!.title,
             style: theme.textTheme.titleLarge,
           ),
           leadingWidth: 80,
         ),
-        drawer: const CustomDrawer(),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Text(
-                textAlign: TextAlign.start,
-                "Pick Your Category !",
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  color: const Color(0xFF4F5A69),
-                ),
-              ),
-              Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.symmetric(vertical: 25),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 20,
-                      crossAxisSpacing: 20,
-                      childAspectRatio: 4 / 5),
-                  itemBuilder: (context, index) => CustomItemWidget(
-                    index: index,
-                    categoryModel: categoryList[index],
-                  ),
-                  itemCount: 6,
+        drawer: CustomDrawer(
+          onCategoryDrawerTap: onCategoryDrawerTap,
+        ),
+        body: selectedCategory == null
+            ? Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Text(
+                      textAlign: TextAlign.start,
+                      "Pick Your Category !",
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        color: const Color(0xFF4F5A69),
+                      ),
+                    ),
+                    Expanded(
+                      child: GridView.builder(
+                        padding: const EdgeInsets.symmetric(vertical: 25),
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 20,
+                                crossAxisSpacing: 20,
+                                childAspectRatio: 4 / 5),
+                        itemBuilder: (context, index) => CustomItemWidget(
+                          index: index,
+                          categoryModel: categoryList[index],
+                          onCategoryClicked: onCategoryClicked,
+                        ),
+                        itemCount: 6,
+                      ),
+                    )
+                  ],
                 ),
               )
-            ],
-          ),
-        ),
+            : CategoryView(categoryModel: selectedCategory!),
       ),
     );
+  }
+
+  CategoryModel? selectedCategory;
+
+  void onCategoryClicked(CategoryModel categoryModel) {
+    selectedCategory = categoryModel;
+    print(categoryModel.id);
+    setState(() {});
+  }
+
+  void onCategoryDrawerTap() {
+    setState(() {
+      selectedCategory = null;
+      print(selectedCategory);
+    });
   }
 }
